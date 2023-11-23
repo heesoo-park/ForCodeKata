@@ -1,0 +1,5 @@
+![image](https://github.com/heesoo-park/ForCodeKata/assets/80674868/8400e29e-2903-48b2-9a6a-27e6c09d9852)
+![image](https://github.com/heesoo-park/ForCodeKata/assets/80674868/07898543-916b-47e1-97e0-c5fbde475f6e)
+![image](https://github.com/heesoo-park/ForCodeKata/assets/80674868/8c23b28f-1d89-4583-a649-8da3b9dc7542)
+![image](https://github.com/heesoo-park/ForCodeKata/assets/80674868/613ac80a-cd1f-4cb1-a1bf-92140f9157c8)
+![image](https://github.com/heesoo-park/ForCodeKata/assets/80674868/6c0a5b6a-b091-4a1a-9ae1-efd6257d7b16)
