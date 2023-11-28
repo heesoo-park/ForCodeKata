@@ -62,7 +62,7 @@ class Solution {
     }
 }
 
-// 다른 문제 풀었던 기억을 가지고 짰지만 60% 정도의 정답률을 가진 코드
+// 다른 문제 풀었던 기억을 가지고 짰지만 80% 정도의 정답률을 가진 코드
 class Solution {
     fun solution(x: Int, y: Int, n: Int): Int {
         var dp = IntArray(y + 1) { 0 }
@@ -70,7 +70,7 @@ class Solution {
         if (x == y) return 0
         
         for (i in x + 1..y) {
-            if ((i - x) % n == 0) dp[i] = dp[i - n] + 1
+            if (i - n >= x) dp[i] = dp[i - n] + 1
             if (i % 2 == 0) dp[i] = dp[i].coerceAtMost(dp[i / 2] + 1)
             if (i % 3 == 0) dp[i] = dp[i].coerceAtMost(dp[i / 3] + 1)
         }
