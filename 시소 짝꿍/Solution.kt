@@ -1,3 +1,100 @@
+class Solution {
+    private var answer: Long = 0
+    fun solution(weights: IntArray): Long {
+        var weightsGroup = weights.toList().groupingBy { it }.eachCount()
+
+        for (weight in weightsGroup) {
+            if (weight.value >= 2) {
+                answer += weight.value.toLong() * (weight.value.toLong() - 1) / 2
+            }
+
+            checkWeight(weightsGroup, weight.key, 2.0 / 3.0)
+            checkWeight(weightsGroup, weight.key, 2.0 / 4.0)
+            checkWeight(weightsGroup, weight.key, 3.0 / 4.0)
+        }
+
+        return answer
+    }
+
+    private fun checkWeight(w: Map<Int, Int>, key: Int, ratio: Double) {
+        if ((key * ratio) - (key * ratio).toInt() == 0.0 && w.containsKey((key * ratio).toInt())) answer += (w[(key * ratio).toInt()]!!.toLong() * w[key]!!.toLong())
+    }
+}
+
+// 형변환을 통해 전보다 덜 틀린 코드
+class Solution {
+    private var answer: Long = 0
+    fun solution(weights: IntArray): Long {
+        var weightsGroup = weights.toList().groupingBy { it }.eachCount()
+
+        for (weight in weightsGroup) {
+            if (weight.value >= 2) {
+                answer += weight.value.toLong() * (weight.value.toLong() - 1) / 2
+            }
+
+            checkWeight(weightsGroup, weight.key, 2, 3)
+            checkWeight(weightsGroup, weight.key, 2, 4)
+            checkWeight(weightsGroup, weight.key, 3, 4)
+        }
+
+        return answer
+    }
+
+    private fun checkWeight(w: Map<Int, Int>, key: Int, ratio1: Int, ratio2: Int) {
+        if (w.containsKey(key * ratio1 / ratio2)) answer += (w[key * ratio1 / ratio2]!!.toLong() * w[key]!!.toLong())
+    }
+}
+
+// 전보다는 조금 덜 틀린 코드
+class Solution {
+    private var answer: Long = 0
+    fun solution(weights: IntArray): Long {
+        var weightsGroup = weights.toList().groupingBy { it }.eachCount()
+
+        for (weight in weightsGroup) {
+            if (weight.value >= 2) {
+                answer += weight.value * (weight.value - 1) / 2
+            }
+
+            checkWeight(weightsGroup, weight.key, 2, 3)
+            checkWeight(weightsGroup, weight.key, 2, 4)
+            checkWeight(weightsGroup, weight.key, 3, 4)
+        }
+
+        return answer
+    }
+
+    private fun checkWeight(w: Map<Int, Int>, key: Int, ratio1: Int, ratio2: Int) {
+        if (w.containsKey(key * ratio1 / ratio2)) answer += (w[key * ratio1 / ratio2]!! * w[key]!!)
+    }
+}
+
+// 많이 틀린 코드
+class Solution {
+    private val allWeights: LongArray = LongArray(4001) { 0 }
+    private var answer: Long = 0
+    fun solution(weights: IntArray): Long {
+        var userNum = mutableSetOf<Int>()
+        for (weight in weights) {
+            checkWeight(weight, 2)
+            checkWeight(weight, 3)
+            checkWeight(weight, 4)
+
+            if (userNum.contains(weight)) answer -= 2
+
+            userNum.add(weight)
+        }
+        return answer
+    }
+
+    private fun checkWeight(w: Int, len: Int) {
+        allWeights[w * len]++
+        if (allWeights[w * len] > 1) {
+            answer += (allWeights[w * len] - 1)
+        }
+    }
+}
+
 // 메모리 초과난 코드
 class Solution {
     fun solution(weights: IntArray): Long {
